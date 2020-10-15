@@ -17,12 +17,11 @@ class ListPostsTest extends TestCase
 
         $project = Post::factory()->create();
 
-        $this->getJson(route('posts.index'))
-            ->assertStatus(200)
+        $response = $this->getJson(route('posts.index'));
+ 
+        $response->assertStatus(200)
             ->assertViewIs('posts.index')
             ->assertViewHas('posts')
             ->assertSee($project->title);
     }
-
-    
 }
