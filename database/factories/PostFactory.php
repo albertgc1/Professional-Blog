@@ -23,7 +23,9 @@ class PostFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence,
-            'excerpt' => $this->faker->paragraph
+            'excerpt' => $this->faker->paragraph,
+            'body' => $this->faker->paragraph(4, true),
+            'published_at' => now()
         ];
     }
 }
