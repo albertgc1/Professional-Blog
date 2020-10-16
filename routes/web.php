@@ -8,3 +8,5 @@ Route::get('/', function () {
 });
 
 Route::get('posts', [PostController::class, 'index'])->name('posts.index');
+
+Route::view('admin', 'admin.dashboard');
