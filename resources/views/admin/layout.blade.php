@@ -38,7 +38,7 @@
   <header class="main-header">
     <!-- Logo -->
     <a href="/" class="logo">
-      <span class="logo-lg"><b>CAUCH</b></span>
+      <span class="logo-lg">AMD<b>BLOG</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -71,7 +71,7 @@
                   <a href="#" class="btn btn-default btn-flat btn-xs">Cambiar Contraseña</a>
                 </div>
                 <div class="pull-right">
-                <form action="#" method="POST">
+                <form action="{{ route('logout') }}" method="POST">
                   @csrf
                   <button type="submit" class="btn btn-default btn-flat btn-xs">Cerrar Sesión</button>
                 </form>
@@ -98,18 +98,7 @@
         </div>
       </div>
 
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MENU DE NAVEGACION</li>
-        <li>
-          <a href="#"><i class="fa fa-home"></i> <span>Inicio</span></a>
-        </li>
-        <li>
-            <a href="#"><i class="fa fa-book"></i> <span>Mis Datos</span></a>
-        </li>
-        <li>
-          <a href="#"><i class="fa fa-money"></i> <span>Historial de Pagos</span></a>
-        </li>
-      </ul>
+      @include('admin.partials.nav')
     </section>
     <!-- /.sidebar -->
   </aside>

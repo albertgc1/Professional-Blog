@@ -1,5 +1,5 @@
 @extends('admin.layout')
 
-@section('content')
-    <h2>test</h2>
+@section('header')
+    <h2>{{ auth()->user()->name }}</h2>
 @endsection
