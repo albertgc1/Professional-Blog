@@ -43,8 +43,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Multiple</label>
-                        <select class="select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
+                        <label for="tags">Etiquetas</label>
+                        <select id="tags" name="tags[]" class="select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
                             @foreach ($tags as $tag)
                                 <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                             @endforeach
