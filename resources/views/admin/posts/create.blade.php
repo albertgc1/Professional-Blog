@@ -15,13 +15,16 @@
         <div class="col-md-8">
             <div class="box box-primary">
                 <div class="box-body">
-                    <div class="form-group">
+                    <div class="form-group {{ $errors->has('title') ? 'has-error': '' }}">
                         <label for="title">Título</label>
-                        <input type="text" id="title" name="title" placeholder="Título" class="form-control" required>
+                        <input type="text" id="title" name="title" value="{{ old('title') }}" placeholder="Título" class="form-control">
+                        {!! $errors->first('title', '<span class="help-block">:message</span>') !!}
                     </div>
-                    <div class="form-group">
+                    <div class="form-group {{ $errors->has('body') ? 'has-error': '' }}"">
                         <label for="body">Contenido de la Publicación</label>
-                        <textarea id="body" name="body" id="body" rows="10" class="form-control" placeholder="Ingresa el contenido completo de la publicación"></textarea>
+                        <textarea id="body" name="body" id="body" rows="10" class="form-control"
+                            placeholder="Ingresa el contenido completo de la publicación">{{ old('body') }}</textarea>
+                        {!! $errors->first('body', '<span class="help-block">:message</span>') !!}
                     </div>
                 </div>
             </div>
@@ -31,28 +34,34 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="published_at">Fecha de Publicación</label>
-                        <input type="date" id="published_at" name="published_at" class="form-control">
+                        <input type="date" id="published_at" name="published_at" value="{{ old('published_at') }}" class="form-control">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group {{ $errors->has('category') ? 'has-error': '' }}">
                         <label for="category">Categoría</label>
                         <select class="form-control" name="category" id="category">
-                            <option>Seleccione una categoría</option>
+                            <option value="">Seleccione una categoría</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                <option value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected': '' }}>{{ $category->name }}</option>
                             @endforeach
                         </select>
+                        {!! $errors->first('category', '<span class="help-block">:message</span>') !!}
                     </div>
-                    <div class="form-group">
+                    <div class="form-group {{ $errors->has('tags') ? 'has-error': '' }}">
                         <label for="tags">Etiquetas</label>
                         <select id="tags" name="tags[]" class="select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
                             @foreach ($tags as $tag)
-                                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                <option {{ collect(old('tags'))->contains($tag->id) ? 'selected': '' }} value="{{ $tag->id }}">
+                                    {{ $tag->name }}
+                                </option>
                             @endforeach
                         </select>
+                        {!! $errors->first('tags', '<span class="help-block">:message</span>') !!}
                     </div>
-                    <div class="form-group">
+                    <div class="form-group {{ $errors->has('excerpt') ? 'has-error': '' }}">
                         <label for="excerpt">Extracto de la Publicación</label>
-                        <textarea id="excerpt" name="excerpt" id="body" class="form-control" placeholder="Ingresa el contenido completo de la publicación"></textarea>
+                        <textarea id="excerpt" name="excerpt" id="body" class="form-control"
+                            placeholder="Ingresa el extracto de la publicación">{{ old('excerpt') }}</textarea>
+                        {!! $errors->first('excerpt', '<span class="help-block">:message</span>') !!}
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block">Crear Publicación</button>
