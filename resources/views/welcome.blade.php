@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    
+    <a href="{{ route('login') }}">Login</a>
     <ul>
         @foreach ($posts as $post)
             <li>
