@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Post;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory
@@ -23,9 +24,10 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->sentence,
+            'title' => $title = $this->faker->sentence,
+            'url' => Str::slug($title),
             'excerpt' => $this->faker->paragraph,
-            'body' => $this->faker->paragraph(4, true),
+            'body' => $this->faker->paragraph(4),
             'published_at' => now(),
             'category_id' => Category::factory()->create()
         ];

@@ -22,6 +22,11 @@ class Post extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+    public function getRouteKeyName()
+    {
+        return 'url';
+    }
+
     public function scopePublished($query)
     {
         return $query->whereNotNull('published_at')
