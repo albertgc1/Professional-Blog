@@ -8,8 +8,13 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::latest('published_at')->get();
+        $posts = Post::published()->get();
 
-        return view('posts.index', compact('posts'));
+        return view('welcome', compact('posts'));
+    }
+
+    public function show(Post $post)
+    {
+        return view('posts.show', compact('post'));
     }
 }
