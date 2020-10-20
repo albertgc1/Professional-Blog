@@ -14,7 +14,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
 
     </head>
-    <body class="antialiased">
+    <body class="min-h-screen bg-gray-200 antialiased">
         @yield('content')
     </body>
 </html>
