@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\PhotosController;
 use App\Http\Controllers\Admin\PostsController;
 //use App\Http\Controllers\PostController;
 use App\Http\Controllers\TestController;
@@ -17,6 +18,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('posts', [PostsController::class, 'store'])->name('admin.posts.store');
     Route::get('posts/{post}/edit', [PostsController::class, 'edit'])->name('admin.posts.edit');
     Route::put('posts/{post}', [PostsController::class, 'update'])->name('admin.posts.update');
+
+    Route::post('posts/{post}/photos', [PhotosController::class, 'store'])->name('admin.posts.photos.store');
 });
 
 Auth::routes();

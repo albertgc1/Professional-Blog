@@ -64,6 +64,11 @@
                         {!! $errors->first('excerpt', '<span class="help-block">:message</span>') !!}
                     </div>
                     <div class="form-group">
+                        <div class="dropzone">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block">Crear Publicación</button>
                     </div>
                 </div>
@@ -76,13 +81,23 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('adminLTE/bower_components/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('adminLTE/bower_components/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.css">
 @endpush
 
 @push('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.min.js"></script>
     <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
     <script src="{{ asset('adminLTE/bower_components/select2/dist/js/select2.min.js') }}"></script>
     <script>
         CKEDITOR.replace('body');
         $('.select2').select2()
+        new Dropzone('.dropzone', {
+            url: '/admin/posts/{{ $post->url }}/photos',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            dictDefaultMessage: 'Arrastra las fotos aquí'
+        })
+        Dropzone.autoDiscover = false
     </script>
 @endpush
