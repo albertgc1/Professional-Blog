@@ -15,6 +15,19 @@
 
     </head>
     <body class="min-h-screen bg-gray-200 antialiased">
+
+        <nav class="w-full h-16 flex flex-column justify-center bg-white shadow mb-8">
+            <div class="container m-auto flex justify-between">
+                <span class="tracking-widest font-semibold">BLOG</span>
+                <div class="flex">
+                    <a href="/" class="ml-6 text-green-400">Home</a>
+                    <a href="#" class="ml-6 text-green-600">About</a>
+                    <a href="#" class="ml-6 text-green-600">Services</a>
+                    <a href="#" class="ml-6 text-green-600">Contact</a>
+                </div>
+            </div>
+        </nav>
+
         @yield('content')
     </body>
 </html>
