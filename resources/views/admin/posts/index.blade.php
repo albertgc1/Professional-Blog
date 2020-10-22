@@ -11,9 +11,12 @@
 @section('content')
 
 <div class="box box-primary">
-    {{-- <div class="box-header">
-      <h3 class="box-title">DataTable with default features</h3>
-    </div> --}}
+    <div class="box-header">
+      <h3 class="box-title">Posts</h3>
+      <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#postForm">
+        <i class="fa fa-plus"></i> Crear nuevo Post
+      </button>
+    </div>
     <div class="box-body">
       <table id="posts-table" class="table table-bordered">
         <thead>

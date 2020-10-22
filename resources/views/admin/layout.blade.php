@@ -122,6 +122,8 @@
       
     </section>
   </div>
+
+  @include('admin.posts.create')
  
 </div>
 
