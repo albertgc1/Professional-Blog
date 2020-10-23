@@ -91,12 +91,19 @@
     <script>
         CKEDITOR.replace('body');
         $('.select2').select2()
-        new Dropzone('.dropzone', {
+        var myDropzone = new Dropzone('.dropzone', {
             url: '/admin/posts/{{ $post->url }}/photos',
+            paramName: 'photo',
+            acceptedFiles: 'image/*',
+            maxFilesize: 2,
             headers: {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
             },
             dictDefaultMessage: 'Arrastra las fotos aquí'
+        })
+        myDropzone.on('error', function(file, res){
+            var msg = res.errors.photo[0]
+            $('.dz-error-message:last > span').text(msg)
         })
         Dropzone.autoDiscover = false
     </script>
