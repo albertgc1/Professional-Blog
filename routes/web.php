@@ -2,14 +2,11 @@
 
 use App\Http\Controllers\admin\PhotosController;
 use App\Http\Controllers\Admin\PostsController;
-//use App\Http\Controllers\PostController;
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-//Route::get('/', [PostController::class, 'index'])->name('posts.index');
-//Route::get('/{post}', [PostController::class, 'show'])->name('posts.show');
-
-Route::get('test', [TestController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('posts.index');
+Route::get('/detail/{post}', [HomeController::class, 'show'])->name('posts.show');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::view('/', 'admin.dashboard')->name('dashboard');

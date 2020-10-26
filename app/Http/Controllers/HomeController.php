@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 
-class PostController extends Controller
+class HomeController extends Controller
 {
     public function index()
     {
