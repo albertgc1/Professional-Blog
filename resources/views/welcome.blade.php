@@ -1,12 +1,18 @@
 @extends('layout')
 
 @section('content')
-    
+    @if (isset($category))
+    <div class="w-full md:w-1/2 mx-auto mb-3">
+        <h3 class="tracking-widest">Posts con categoría <span class="font-bold">{{ $category }}</span></h3>
+    </div>
+    @endif
     @foreach ($posts as $post)
         <div class="box w-full md:w-1/2 mx-auto bg-white mb-4 py-4 pl-6 shadow-md rounded-sm">
             <div class="flex justify-between">
                 <span class="tracking-widest">{{ $post->published_at->format('M d') }}</span>
-                <span class="bg-green-500 w-1/6 shadow-md text-center text-gray-300 rounded-l-lg">{{ $post->category->name }}</span>
+                <span class="bg-green-500 w-1/6 shadow-md text-center text-gray-300 rounded-l-lg">
+                    <a href="{{ route('categories.index', $post->category) }}">{{ $post->category->name }}</a>
+                </span>
             </div>
             <div class="pr-6">
                 <div class="my-4">
