@@ -30,4 +30,8 @@
         </div>
     @endforeach
 
+    <div class="w-full md:w-1/2 mx-auto">
+        {{ $posts->links() }}
+    </div>
+
 @endsection
