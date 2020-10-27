@@ -17,6 +17,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::put('posts/{post}', [PostsController::class, 'update'])->name('admin.posts.update');
 
     Route::post('posts/{post}/photos', [PhotosController::class, 'store'])->name('admin.posts.photos.store');
+    Route::delete('posts/{photo}', [PhotosController::class, 'destroy'])->name('admin.photos.destroy');
 });
 
 Auth::routes();

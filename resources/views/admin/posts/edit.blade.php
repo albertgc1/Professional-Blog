@@ -9,6 +9,25 @@
 @endsection
 
 @section('content')
+@if ($post->photos->count())
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box-body">
+                @foreach ($post->photos as $photo)
+                <form action="{{ route('admin.photos.destroy', $photo) }}" method="POST">
+                    @csrf @method('DELETE')
+                    <div class="col-md-1 row photos">
+                        <button class="btn btn-danger btn-xs" style="position: absolute"><i class="fa fa-trash"></i></button>
+                        <img class="photo" src="{{ $photo->photo }}" />
+                    </div>
+                </form>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 <div class="row">
     <form method="POST" action="{{ route('admin.posts.update', $post) }}">
         @csrf @method('PUT')
@@ -22,7 +41,7 @@
                     </div>
                     <div class="form-group {{ $errors->has('body') ? 'has-error': '' }}"">
                         <label for="body">Contenido de la Publicación</label>
-                        <textarea id="body" name="body" id="body" rows="10" class="form-control"
+                        <textarea id="body" name="body" id="body" class="form-control"
                             placeholder="Ingresa el contenido completo de la publicación">{{ old('body', $post->body) }}</textarea>
                         {!! $errors->first('body', '<span class="help-block">:message</span>') !!}
                     </div>
@@ -79,6 +98,7 @@
 @endsection
 
 @push('styles')
+    <style> .photo{ width: 100%; } .photos{ margin-right: 5px; } </style>
     <link rel="stylesheet" href="{{ asset('adminLTE/bower_components/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('adminLTE/bower_components/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.css">
@@ -91,6 +111,7 @@
     <script>
         CKEDITOR.replace('body');
         $('.select2').select2()
+        CKEDITOR.config.height = 315
         var myDropzone = new Dropzone('.dropzone', {
             url: '/admin/posts/{{ $post->url }}/photos',
             paramName: 'photo',
