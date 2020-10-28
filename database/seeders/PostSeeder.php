@@ -16,8 +16,6 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        Post::truncate();
-
         Post::factory()->create([
             'title' => 'Primer post',
             'url' => Str::slug('Primer post'),

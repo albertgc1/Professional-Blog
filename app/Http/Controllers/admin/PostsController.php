@@ -30,10 +30,7 @@ class PostsController extends Controller
     {
         $this->validate($request, ['title' => 'required']);
 
-        $post = Post::create([
-            'title' => $request->title,
-            'url' => Str::slug($request->title)
-        ]);
+        $post = Post::create(['title' => $request->title]);
 
         return redirect()->route('admin.posts.edit', $post);
     }

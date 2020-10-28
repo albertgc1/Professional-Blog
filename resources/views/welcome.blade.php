@@ -1,9 +1,9 @@
 @extends('layout')
 
 @section('content')
-    @if (isset($category))
+    @if (isset($filter))
     <div class="w-full md:w-1/2 mx-auto mb-3">
-        <h3 class="tracking-widest">Posts con categoría <span class="font-bold">{{ $category }}</span></h3>
+        <h3 class="tracking-widest">Posts con {{ $type }} <span class="font-bold">{{ $filter }}</span></h3>
     </div>
     @endif
     @foreach ($posts as $post)
@@ -27,7 +27,9 @@
                         </div>
                         <div>
                             @foreach ($post->tags as $tag)
+                            <a href="{{ route('tags.index', $tag) }}">
                                 <span class="text-gray-600">#{{ $tag->name }}</span>
+                            </a>
                             @endforeach
                         </div>
                     </div>

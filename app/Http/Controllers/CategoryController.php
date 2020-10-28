@@ -10,7 +10,8 @@ class CategoryController extends Controller
     {
         return view('welcome', [
             'posts' => $category->posts()->paginate(10),
-            'category' => $category->name
+            'filter' => $category->name,
+            'type' => 'Categoría'
         ]);
     }
 }
