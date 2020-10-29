@@ -53,7 +53,9 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="published_at">Fecha de Publicación</label>
-                        <input type="date" id="published_at" name="published_at" value="{{ old('published_at', $post->published_at) }}" class="form-control">
+                        <input type="datetime" name="published_at"
+                            value="{{ $post->published_at ? $post->published_at->format('d/m/Y') : '' }}"
+                            class="form-control">
                     </div>
                     <div class="form-group {{ $errors->has('category') ? 'has-error': '' }}">
                         <label for="category">Categoría</label>
