@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Category;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePostRequest;
 
 class PostsController extends Controller
 {
@@ -44,30 +44,12 @@ class PostsController extends Controller
         ]);
     }
 
-    public function update(Request $request, Post $post)
+    public function update(StorePostRequest $request, Post $post)
     {
-        $this->validate($request, [
-            'title' => 'required',
-            'excerpt' => 'required',
-            'body' => 'required',
-            'category' => 'required',
-            'tags' => 'required',
-        ]);
+        $post->update($request->all());
 
-        $post->title = $request->title;
-        $post->excerpt = $request->excerpt;
-        $post->body = $request->body;
-        $post->published_at = now();
-        $post->category_id = $request->category;
-        $post->save();
+        $post->syncTags($request->tags);
 
-        $tags = [];
-        foreach($request->tags as $tag){
-            $tags[] = Tag::find($tag) ? $tag : Tag::create(['name' => $tag])->id;
-        }
-
-        $post->tags()->sync($tags);
-
-        return back()->with('flash', 'Tu publicación ha sido actualizada');
+        return redirect()->route('admin.posts.edit', $post)->with('flash', 'Tu publicación ha sido actualizada');
     }
 }

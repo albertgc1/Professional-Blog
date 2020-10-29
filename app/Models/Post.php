@@ -11,7 +11,9 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'title', 'excerpt', 'body', 'published_at', 'category_id'
+    ];
 
     public function category()
     {
@@ -46,5 +48,19 @@ class Post extends Model
     {
         $this->attributes['title'] = $title;
         $this->attributes['url'] = Str::slug($title);
+    }
+
+    public function setPublishedAtAttribute($published_at)
+    {
+        $this->attributes['published_at'] = $published_at ? Carbon::parse($published_at) : null;
+    }
+
+    public function syncTags($tags)
+    {
+        $tagIds = collect($tags)->map(function($tag){
+            return Tag::find($tag) ? $tag : Tag::create(['name' => $tag])->id;
+        });
+
+        $this->tags()->sync($tagIds);
     }
 }

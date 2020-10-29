@@ -53,19 +53,19 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="published_at">Fecha de Publicación</label>
-                        <input type="datetime" name="published_at"
-                            value="{{ $post->published_at ? $post->published_at->format('d/m/Y') : '' }}"
+                        <input type="date" name="published_at"
+                            value="{{ $post->published_at }}"
                             class="form-control">
                     </div>
-                    <div class="form-group {{ $errors->has('category') ? 'has-error': '' }}">
-                        <label for="category">Categoría</label>
-                        <select class="form-control" name="category" id="category">
+                    <div class="form-group {{ $errors->has('category_id') ? 'has-error': '' }}">
+                        <label for="category_id">Categoría</label>
+                        <select class="form-control" name="category_id" id="category_id">
                             <option value="">Seleccione una categoría</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" {{ old('category', $post->category_id) == $category->id ? 'selected': '' }}>{{ $category->name }}</option>
+                                <option value="{{ $category->id }}" {{ old('category_id', $post->category_id) == $category->id ? 'selected': '' }}>{{ $category->name }}</option>
                             @endforeach
                         </select>
-                        {!! $errors->first('category', '<span class="help-block">:message</span>') !!}
+                        {!! $errors->first('category_id', '<span class="help-block">:message</span>') !!}
                     </div>
                     <div class="form-group {{ $errors->has('tags') ? 'has-error': '' }}">
                         <label for="tags">Etiquetas</label>
