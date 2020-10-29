@@ -112,7 +112,9 @@
     <script src="{{ asset('adminLTE/bower_components/select2/dist/js/select2.min.js') }}"></script>
     <script>
         CKEDITOR.replace('body');
-        $('.select2').select2()
+        $('.select2').select2({
+            tags: true
+        })
         CKEDITOR.config.height = 315
         var myDropzone = new Dropzone('.dropzone', {
             url: '/admin/posts/{{ $post->url }}/photos',

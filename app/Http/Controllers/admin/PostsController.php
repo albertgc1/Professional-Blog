@@ -57,11 +57,16 @@ class PostsController extends Controller
         $post->title = $request->title;
         $post->excerpt = $request->excerpt;
         $post->body = $request->body;
-        $post->published_at = $request->published_at;
+        $post->published_at = now();
         $post->category_id = $request->category;
         $post->save();
 
-        $post->tags()->sync($request->tags);
+        $tags = [];
+        foreach($request->tags as $tag){
+            $tags[] = Tag::find($tag) ? $tag : Tag::create(['name' => $tag])->id;
+        }
+
+        $post->tags()->sync($tags);
 
         return back()->with('flash', 'Tu publicación ha sido actualizada');
     }
