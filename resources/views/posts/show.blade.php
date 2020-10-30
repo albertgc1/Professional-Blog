@@ -9,7 +9,7 @@
         @if ($post->photos->count() > 0) 
             <div class="w-full h-56 flex overflow-auto">
                 @foreach ($post->photos as $photo)
-                <img class="h-full w-auto" src="{{ $photo->photo }}" />
+                <img class="h-full w-auto" src="{{ url($photo->photo) }}" />
                 @endforeach
             </div>
         @endif
