@@ -34,9 +34,16 @@
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->excerpt }}</td>
                     <td>
-                        <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>
-                        <a href="#" class="btn btn-xs btn-info"><i class="fa fa-eye"></i></a>
-                        <a href="#" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
+                      <a href="{{ route('posts.show', $post) }}" class="btn btn-xs btn-info" target="_blank"><i class="fa fa-eye"></i></a>
+                      <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>
+                      <form action="{{ route('admin.posts.destroy', $post) }}" method="POST" style="display: inline">
+                        @csrf @method('DELETE')
+                        <button 
+                          class="btn btn-xs btn-danger"
+                          onclick="return confirm('¿Estás seguro de querer eliminar esta publicación?')">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                      </form>
                     </td>
                 </tr>
             @endforeach

@@ -52,4 +52,11 @@ class PostsController extends Controller
 
         return redirect()->route('admin.posts.edit', $post)->with('flash', 'Tu publicación ha sido actualizada');
     }
+
+    public function destroy(Post $post)
+    {
+        $post->delete();
+
+        return back()->with('flash', 'Publicación eliminada correctamente');
+    }
 }

@@ -63,4 +63,13 @@ class Post extends Model
 
         $this->tags()->sync($tagIds);
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleting(function($post){
+            $post->tags()->detach();
+            $post->photos->each->delete();
+        });
+    }
 }
