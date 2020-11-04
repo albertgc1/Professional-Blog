@@ -44,6 +44,27 @@ class Post extends Model
 
     protected $dates = ['published_at'];
 
+    public static function create(array $attributes = [])
+    {
+        $post = static::query()->create($attributes);
+        $post->generateUrl();
+        return $post;
+    }
+
+    public function generateUrl()
+    {
+        $url = Str::slug($this->title);
+
+        if($this->where('url', $url)->exists())
+        {
+            $url = "{$url}-{$this->id}";
+        }
+
+        $this->url = $url;
+
+        $this->save();
+    }
+
     public function setTitleAttribute($title)
     {
         $this->attributes['title'] = $title;
