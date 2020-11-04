@@ -42,6 +42,11 @@ class Post extends Model
                 ->latest('published_at');
     }
 
+    public function isPublished()
+    {
+        return ! is_null($this->published_at) && $this->published_at < today();
+    }
+
     protected $dates = ['published_at'];
 
     public static function create(array $attributes = [])

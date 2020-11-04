@@ -14,8 +14,10 @@
             </div>
         @endif
         <div class="pl-6 flex justify-between pt-6">
-            <span class="tracking-widest">{{ $post->published_at->format('M d') }}</span>
-            <span class="bg-green-500 w-1/6 shadow-md text-center text-gray-300 rounded-l-lg">{{ $post->category->name }}</span>
+            <span class="tracking-widest">{{ optional($post->published_at)->format('M d') }}</span>
+            @if ($post->category)
+                <span class="bg-green-500 w-1/6 shadow-md text-center text-gray-300 rounded-l-lg">{{ $post->category->name }}</span>
+            @endif
         </div>
         <div class="pr-6 pl-6">
             <div class="my-4">
