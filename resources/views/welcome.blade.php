@@ -9,7 +9,9 @@
     @foreach ($posts as $post)
         <div class="box w-full md:w-1/2 mx-auto bg-white mb-4 py-4 pl-6 shadow-md rounded-sm">
             <div class="flex justify-between">
-                <span class="tracking-widest">{{ $post->published_at->format('M d') }}</span>
+                <span class="tracking-widest">
+                    {{ $post->published_at->format('M d') }} / {{ $post->owner->name }}
+                </span>
                 <span class="bg-green-500 w-1/6 shadow-md text-center text-gray-300 rounded-l-lg">
                     <a href="{{ route('categories.index', $post->category) }}">{{ $post->category->name }}</a>
                 </span>

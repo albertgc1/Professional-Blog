@@ -20,28 +20,32 @@ class PostSeeder extends Seeder
             'title' => 'Primer post',
             'url' => Str::slug('Primer post'),
              'category_id' => 1,
-             'published_at' => Carbon::now()->subDays(4)
+             'published_at' => Carbon::now()->subDays(4),
+            'user_id' => 1
         ]);
 
         Post::factory()->create([
             'title' => 'Segundo post',
             'url' => Str::slug('Segundo post'),
              'category_id' => 1,
-             'published_at' => Carbon::now()->subDays(3)
+             'published_at' => Carbon::now()->subDays(3),
+             'user_id' => 1
         ]);
 
         Post::factory()->create([
             'title' => 'Tercer post',
             'url' => Str::slug('Tercer post'),
              'category_id' => 2,
-             'published_at' => Carbon::now()->subDays(2)
+             'published_at' => Carbon::now()->subDays(2),
+             'user_id' => 1
         ]);
 
         Post::factory()->create([
             'title' => 'Cuarto post',
             'url' => Str::slug('Cuarto post'),
              'category_id' => 2,
-             'published_at' => Carbon::now()->subDays(1)
+             'published_at' => Carbon::now()->subDays(1),
+             'user_id' => 1
         ]);
 
     }

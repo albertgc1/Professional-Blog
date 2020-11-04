@@ -12,8 +12,13 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'excerpt', 'body', 'published_at', 'category_id'
+        'title', 'excerpt', 'body', 'published_at', 'category_id', 'user_id'
     ];
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     public function category()
     {
