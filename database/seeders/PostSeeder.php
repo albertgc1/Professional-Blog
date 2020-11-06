@@ -37,7 +37,7 @@ class PostSeeder extends Seeder
             'url' => Str::slug('Tercer post'),
              'category_id' => 2,
              'published_at' => Carbon::now()->subDays(2),
-             'user_id' => 1
+             'user_id' => 2
         ]);
 
         Post::factory()->create([
@@ -45,7 +45,7 @@ class PostSeeder extends Seeder
             'url' => Str::slug('Cuarto post'),
              'category_id' => 2,
              'published_at' => Carbon::now()->subDays(1),
-             'user_id' => 1
+             'user_id' => 2
         ]);
 
     }
