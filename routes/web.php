@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\PhotosController;
 use App\Http\Controllers\Admin\PostsController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TagController;
@@ -14,15 +15,13 @@ Route::get('tags/{tag}', [TagController::class, 'index'])->name('tags.index');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::view('/', 'admin.dashboard')->name('dashboard');
-    Route::get('posts', [PostsController::class, 'index'])->name('admin.posts.index');
-    Route::get('posts/create', [PostsController::class, 'create'])->name('admin.posts.create');
-    Route::post('posts', [PostsController::class, 'store'])->name('admin.posts.store');
-    Route::get('posts/{post}/edit', [PostsController::class, 'edit'])->name('admin.posts.edit');
-    Route::put('posts/{post}', [PostsController::class, 'update'])->name('admin.posts.update');
-    Route::delete('posts/{post}', [PostsController::class, 'destroy'])->name('admin.posts.destroy');
+
+    Route::resource('posts', PostsController::class, ['as' => 'admin'])->except('show');
 
     Route::post('posts/{post}/photos', [PhotosController::class, 'store'])->name('admin.posts.photos.store');
     Route::delete('posts/{photo}', [PhotosController::class, 'destroy'])->name('admin.photos.destroy');
+
+    Route::resource('users', UserController::class, ['as' => 'admin']);
 });
 
 Auth::routes();
