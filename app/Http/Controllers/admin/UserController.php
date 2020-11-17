@@ -25,22 +25,22 @@ class UserController extends Controller
         //
     }
 
-    public function show($id)
+    public function show(User $user)
+    {
+        return view('admin.users.show', compact('user'));
+    }
+
+    public function edit(User $user)
     {
         //
     }
 
-    public function edit($id)
+    public function update(Request $request, User $user)
     {
         //
     }
 
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
+    public function destroy(User $user)
     {
         //
     }
