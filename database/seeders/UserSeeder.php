@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class UserSeeder extends Seeder
 {
@@ -15,8 +16,14 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        Permission::truncate();
         Role::truncate();
         User::truncate();
+
+        $viewPermissionPosts = Permission::create(['name' => 'View posts']);
+        $createPermissionPosts = Permission::create(['name' => 'Create posts']);
+        $updatePermissionPosts = Permission::create(['name' => 'Update posts']);
+        $deletePermissionPosts = Permission::create(['name' => 'Delete posts']);
 
         $adminRole = Role::Create(['name' => 'Admin']);
 
