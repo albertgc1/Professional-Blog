@@ -38,12 +38,16 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
-        $request->validate([
+        $rules = [
             'name' => 'required',
             'email' => ['required', Rule::unique('users')->ignore($user->id)]
-        ]);
+        ];
 
-        $user->update($request->all());
+        if($request->filled('password')){
+            $rules['password'] = ['confirmed', 'min:6'];
+        }
+
+        $user->update($request->validate($rules));
 
         return back()->withFlash('Usuario actualizado correctamente');
     }

@@ -29,7 +29,21 @@
 
                     <div class="form-group">
                         <label for="email">Correo:</label>
-                        <input type="text" id="email" name="email" value="{{ old('email', $user->email) }}" class="form-control">
+                        <input type="email" id="email" name="email" value="{{ old('email', $user->email) }}" class="form-control">
+                    </div>
+
+                    <hr>
+
+                    <span class="help-block">Dejar en blanco si no quiere actualizar la contraseña</span>
+
+                    <div class="form-group">
+                        <label for="password">Contraseña:</label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password_confirmation">Confirma Contraseña:</label>
+                        <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" placeholder="Confirma contraseña">
                     </div>
 
                     <button class="btn btn-primary btn-block">Actualizar</button>
