@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserRolesController;
 use App\Http\Controllers\admin\PhotosController;
 use App\Http\Controllers\Admin\PostsController;
 use App\Http\Controllers\Admin\UserController;
@@ -22,6 +23,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::delete('posts/{photo}', [PhotosController::class, 'destroy'])->name('admin.photos.destroy');
 
     Route::resource('users', UserController::class, ['as' => 'admin']);
+
+    Route::put('roles/{user}/update', [UserRolesController::class, 'update'])->name('admin.users.roles.update');
 });
 
 Auth::routes();
