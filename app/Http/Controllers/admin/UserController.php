@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
@@ -36,7 +37,9 @@ class UserController extends Controller
     {
         $roles = Role::pluck('name', 'id');
 
-        return view('admin.users.edit', compact('user', 'roles'));
+        $permissions = Permission::pluck('name', 'id');
+
+        return view('admin.users.edit', compact('user', 'roles', 'permissions'));
     }
 
     public function update(Request $request, User $user)

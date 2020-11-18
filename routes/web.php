@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserPermissionsController;
 use App\Http\Controllers\Admin\UserRolesController;
 use App\Http\Controllers\admin\PhotosController;
 use App\Http\Controllers\Admin\PostsController;
@@ -25,6 +26,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('users', UserController::class, ['as' => 'admin']);
 
     Route::put('roles/{user}/update', [UserRolesController::class, 'update'])->name('admin.users.roles.update');
+    Route::put('permissions/{user}/update', [UserPermissionsController::class, 'update'])->name('admin.users.permissions.update');
 });
 
 Auth::routes();

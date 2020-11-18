@@ -46,7 +46,7 @@
                         <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" placeholder="Confirma contraseña">
                     </div>
 
-                    <button class="btn btn-primary btn-block">Actualizar</button>
+                    <button class="btn btn-primary btn-block">Actualizar Usuario</button>
                 </form>
             </div>
         </div>
@@ -55,7 +55,7 @@
     <div class="col-md-6">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Roles y Permisos</h3>
+                <h3 class="box-title">Roles</h3>
             </div>
             <div class="box-body">
               <form action="{{ route('admin.users.roles.update', $user->id) }}" method="POST">
@@ -69,7 +69,28 @@
                     </div>
                 @endforeach
 
-                <button class="btn btn-primary btn-block">Actualizar</button>
+                <button class="btn btn-primary btn-block">Actualizar Roles</button>
+              </form>
+            </div>
+        </div>
+
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Permisos</h3>
+            </div>
+            <div class="box-body">
+              <form action="{{ route('admin.users.permissions.update', $user->id) }}" method="POST">
+                @csrf @method('PUT')
+                @foreach ($permissions as $id => $name)
+                    <div class="checkbox">
+                        <label>
+                            <input name="permissions[]" type="checkbox" value="{{ $name }}" {{ $user->permissions->contains($id) ? 'checked': '' }}>
+                            {{ $name }}
+                        </label>
+                    </div>
+                @endforeach
+
+                <button class="btn btn-primary btn-block">Actualizar Permisos</button>
               </form>
             </div>
         </div>
