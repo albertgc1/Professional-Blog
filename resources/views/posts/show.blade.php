@@ -5,14 +5,15 @@
 
 @section('content')
 
-    <div class="box w-full md:w-1/2 mx-auto bg-white mb-4 pb-6 shadow-md rounded-sm">
-        @if ($post->photos->count() > 0) 
-            <div class="w-full h-56 flex overflow-auto">
-                @foreach ($post->photos as $photo)
-                <img class="h-full w-auto" src="{{ url($photo->photo) }}" />
-                @endforeach
-            </div>
+    <div class="box grid grid-cols-2 mx-16 bg-white mb-4 pb-6 shadow-md rounded-sm">
+      <div class="w-full grid grid-cols-2">
+        @if ($post->photos->count() > 0)
+            @foreach ($post->photos as $photo)
+                <img class="w-full h-auto mb-0" src="{{ url($photo->photo) }}" />
+            @endforeach
         @endif
+      </div>
+      <div class="">
         <div class="pl-6 flex justify-between pt-6">
             <span class="tracking-widest">{{ optional($post->published_at)->format('M d') }}</span>
             @if ($post->category)
@@ -25,7 +26,7 @@
             </div>
             <hr>
             <div class="my-4">
-                <p class="leading-relaxed mb-4">{{ $post->body }}</p>
+                <p class="leading-relaxed mb-4">{!! $post->body !!}</p>
                 <div class="flex justify-between">
                     <div></div>
                     <div>
@@ -36,6 +37,7 @@
                 </div>
             </div>
         </div>
+      </div>
     </div>
 
 @endsection
